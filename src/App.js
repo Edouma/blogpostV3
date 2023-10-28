@@ -5,6 +5,7 @@ import Create from './components/Create';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import BlogDetails from './components/BlogDetails';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
                 <BlogDetails/>
               </Route>
               
+              <Route path="*">
+                <NotFound/>
+              </Route>
+
             </Switch>
           </div>
         </div>

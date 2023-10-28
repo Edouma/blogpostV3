@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Create = () => {
 
@@ -23,9 +25,19 @@ const Create = () => {
         e.preventDefault()
         axios.post('http://localhost:4000/blogs', data)
             .then(res =>{
-                alert('new blog added')
+                // alert('new blog added')
+                toast.success('new blog added successfully', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000,
+                })
             })
-            .catch(err => console.log(err.message));
+            // .catch(err => console.log(err.message));
+            .catch(err =>{
+                toast.error('An error Occurred while adding the blog', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000,
+                })
+            })
     }
 
     return ( 
@@ -48,6 +60,7 @@ const Create = () => {
                 </Form.Group>
 
                 <Button variant='primary' type="submit">save blog</Button>
+                <ToastContainer/>
             </Form>
         </div>
      );
